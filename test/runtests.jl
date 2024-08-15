@@ -10,8 +10,9 @@ else
     const _oneunit = Base.oneunit
 end
 
-axes_values(x, d) = values(axes(x, d))
-axes_values(x) = map(values, axes(x))
+values1(r) = first(r):last(r)   # ensure 1-based indices
+axes_values(x, d) = values1(axes(x, d))
+axes_values(x) = map(values1, axes(x))
 
 function test_approx_eq_periodic(a::FFTView, b)
     for I in CartesianIndices(axes(b))
